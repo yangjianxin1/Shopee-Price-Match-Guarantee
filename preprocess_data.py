@@ -47,4 +47,8 @@ def split_data(input_file, train_file, dev_file, test_file):
 
 
 if __name__ == '__main__':
-    pass
+    input_file = 'data/shopee-product-matching/train.csv'   # 原始训练集
+    train_file = 'data/shopee/train.csv'    # 切分后的训练集
+    dev_file = 'data/shopee/dev.csv'    # 切分后的验证集
+    test_file = 'data/shopee/test.csv'  # 切分后的测试集
+    split_data(input_file, train_file, dev_file, test_file)

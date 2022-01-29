@@ -157,7 +157,7 @@ def load_train_data_unsupervised(tokenizer, args):
         title = row['title']
         title_ids = tokenizer([title, title], max_length=args.max_len, truncation=True, padding='max_length',
                               return_tensors='pt')
-        feature_list += title_ids
+        feature_list.append(title_ids)
 
     logger.info("len of train data:{}".format(len(feature_list)))
     with open(train_file_cache, 'wb') as f:
@@ -270,7 +270,7 @@ def main(args):
         elif args.train_mode == 'unsupervise':
             train_data = load_train_data_unsupervised(tokenizer, args)
         train_dataset = TrainDataset(train_data, tokenizer, max_len=args.max_len)
-        # train_dataset = train_dataset[:128]
+        # train_dataset = train_dataset[:32]
         train_dataloader = DataLoader(train_dataset, batch_size=args.batch_size_train, shuffle=True,
                                       num_workers=args.num_workers)
         dev_data = load_eval_data(tokenizer, args, 'dev')
@@ -286,7 +286,7 @@ def main(args):
         test_df = test_data['df']
         test_dataset = TestDataset(test_data['feature_list'], tokenizer, max_len=args.max_len)
         # test_dataset = test_dataset[:8]
-        # test_df = test_df.iloc()
+        test_df = test_df.iloc()
         test_dataloader = DataLoader(test_dataset, batch_size=args.batch_size_eval, shuffle=False,
                                      num_workers=args.num_workers)
         path = join(args.output_path, 'simcse.pt')
