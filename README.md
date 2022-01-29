@@ -5,17 +5,30 @@
 可用于同款商品匹配，商品比价等场景。
 
 ### 数据集
-- 训练集（34250条数据），每条数据包含5个字段
-    - posting_id:商品编号
-    - image:商品的图片文件名
-    - image_phash:商品图片的哈希值
-    - title:商品标题
-    - label_group:商品类别
-- 测试集（3条数据样例）
-    - posting_id:商品编号
-    - image:商品的图片文件名
-    - image_phash:商品图片的哈希值
-    - title:商品标题
+训练集（34250条数据）格式如下，每条数据包含5个字段：
+- posting_id:商品编号
+- image:商品的图片文件名
+- image_phash:商品图片的哈希值
+- title:商品标题
+- label_group:商品类别
+
+|posting_id|image|image_phash|title|label_group|
+| ----  | ----  | ----  |  ----  | ----  |
+|train_129225211|0000a68812bc7e98c42888dfb1c07da0.jpg|94974f937d4c2433|Paper Bag Victoria Secret|249114794|
+|train_3386243561|00039780dfc94d01db8676fe789ecd05.jpg|af3f9460c2838f0f|Double Tape 3M VHB 12 mm x 4,5 m ORIGINAL / DOUBLE FOAM TAPE|2937985045|
+|train_2288590299|000a190fdd715a2a36faed16e2c65df7.jpg|b94cb00ed3e50f78|Maling TTS Canned Pork Luncheon Meat 397 gr|2395904891」
+
+测试集（3条数据样例）格式如下：
+- posting_id:商品编号
+- image:商品的图片文件名
+- image_phash:商品图片的哈希值
+- title:商品标题
+
+|posting_id|image|image_phash|title|
+| ----  | ----  | ----  |  ----  |
+|test_2255846744|0006c8e5462ae52167402bac1c2e916e.jpg|ecc292392dc7687a|Edufuntoys - CHARACTER PHONE ada lampu dan musik/ mainan telepon|
+|test_4015706929|0008377d3662e83ef44e1881af38b879.jpg|ba81c17e3581cabe|READY Lemonilo Mie instant sehat kuah dan goreng|
+
 
 ### 评价指标
 对于测试集中的每个商品，预测出其对应的同款商品的posting_id列表，上限为50个。对于每个商品的F1得分取平均，得到最终的F1得分。
